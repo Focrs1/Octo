@@ -1,0 +1,22 @@
+Added automated build/install script in parent folder: setup-all.sh
+Usage:
+setup-all.sh [-f|--force-root] [[-i|--install-deps] -d|--delete-packages] [-c|--clean] [-h|--help]
+
+If -i is specified, the script tries to install the prerequisites listed below. It shall try to sudo in order to install the components and fall back to su -c in case of failure. If both methods fail, the script will exit.
+At present, ehs and freerdp packages are downloaded from their source repositories (master branch) into $HOME/prereqs and installed locally, in the $HOME/local folder.
+By default, the script will exit if run by root. You can get around this issue by specifying the -f option when invoking the script.
+
+For unattended setup, installing all prereqs and deleting conflicting packages, run the script as root, specifying the following command:
+setup-all.sh -f -i -d
+
+If you have all prereqs installed, just run the script without any flags as long as you are NOT the root user. If you are sure you want to run the script as root use the -f flag.
+
+Prerequisites:
+
+gcc/g++ svn subversion-svn2cl openssl-devel boost-devel, libpng-devel elfutils-devel
+ehs-devel >= 1.5.0-160, FreeRDP GIT-HEAD
+
+(For tracing exceptions additionally elfutils-devel or bfd-devel)
+
+ehs repository:
+svn://svn.code.sf.net/p/ehs/code/trunk 
